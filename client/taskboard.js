@@ -5,15 +5,15 @@
 var taskboard = {};
 
 taskboard.init = function() {
-	var d = [{'ticketNumber':'100', 'desc':'Testing something cool', 'estimate':'1', 'status':'toDo'},
-			 {'ticketNumber':'101', 'desc':'Make everything better', 'estimate':'2', 'status':'toDo'},
-			 {'ticketNumber':'102', 'desc':'Help?', 'estimate':'1', 'status':'inProgress'},
-			 {'ticketNumber':'103', 'desc':'This ticket is useless', 'estimate':'13', 'status':'inProgress'},
-			 {'ticketNumber':'104', 'desc':'Test the flux capacitor', 'estimate':'1', 'status':'inProgress'},
-			 {'ticketNumber':'105', 'desc':'Build a time machine', 'estimate':'5', 'status':'inProgress'},
-			 {'ticketNumber':'106', 'desc':'Profit?', 'estimate':'1', 'status':'done'},
-			 {'ticketNumber':'107', 'desc':'Be lazy', 'estimate':'2', 'status':'done'},
-			 {'ticketNumber':'108', 'desc':'Literally do nothing', 'estimate':'1', 'status':'done'}];
+	var d = [{'ticketNumber':'100', 'title':'Testing something cool', 'estimate':'1', 'status':'toDo', 'desc':'This is a description of a ticket, it can be long or short!'},
+			 {'ticketNumber':'101', 'title':'Make everything better', 'estimate':'2', 'status':'toDo', 'desc':'This is a description of a ticket, it can be long or short!'},
+			 {'ticketNumber':'102', 'title':'Help?', 'estimate':'1', 'status':'inProgress', 'desc':'This is a description of a ticket, it can be long or short!'},
+			 {'ticketNumber':'103', 'title':'This ticket is useless', 'estimate':'13', 'status':'inProgress', 'desc':'This is a description of a ticket, it can be long or short!'},
+			 {'ticketNumber':'104', 'title':'Test the flux capacitor', 'estimate':'1', 'status':'inProgress', 'desc':'This is a description of a ticket, it can be long or short!'},
+			 {'ticketNumber':'105', 'title':'Build a time machine', 'estimate':'5', 'status':'inProgress', 'desc':'This is a description of a ticket, it can be long or short!'},
+			 {'ticketNumber':'106', 'title':'Profit?', 'estimate':'1', 'status':'done', 'desc':'This is a description of a ticket, it can be long or short!'},
+			 {'ticketNumber':'107', 'title':'Be lazy', 'estimate':'2', 'status':'done', 'desc':'This is a description of a ticket, it can be long or short!'},
+			 {'ticketNumber':'108', 'title':'Literally do nothing', 'estimate':'1', 'status':'done', 'desc':'This is a description of a ticket, it can be long or short!'}];
 
 	for (var i=0; i<d.length; i++) {
 		taskboard.createTicket(d[i]);
@@ -64,12 +64,16 @@ taskboard.init = function() {
 taskboard.createTicket = function(data) {
 	var t = $('<div />', {
 		id: 'ticket_'+data.ticketNumber,
-		html: '<b>Ticket #'+data.ticketNumber+'</b></br>'+data.desc,
 		'class': 'newTicket2 doNotClone'
 	});
+	t.append($('<div />', { 
+		html: 'Ticket #'+data.ticketNumber, 
+		css: { fontWeight: 'bold', backgroundColor: 'green', width: '100%' }
+	}));
+	t.append('</br>'+data.title);
 	t.append($('<span />', {
 		html: data.estimate,
-		css: {position: 'absolute', bottom: '0px', right: '0px', fontWeight: 'bold'}
+		css: { position: 'absolute', bottom: '0px', right: '0px', fontWeight: 'bold' }
 	}));
 	t.draggable({ snap: true });
 	t.data('data', data);
@@ -79,9 +83,10 @@ taskboard.createTicket = function(data) {
 		t.appendTo($('#newTicketPile'));
 	t.tooltip({
 		'text': 'Ticket #'+data.ticketNumber
-			+'</br>'+'Status: '+data.status
+			+'</br>'+'Title: '+data.title
+			+'</br>'+'Status: '+toTitleCase(data.status)
 			+'</br>'+'Estimate: '+data.estimate
-			+'</br>'+'More Cool Info: You could put information about the ticket here, or possible just cool facts about cats or something. It\'s really up to you!',
+			+'</br>'+'Description: '+data.desc,
 		'textStyling': {
 			color: 'white',
 			backgroundColor: 'black',
@@ -94,6 +99,10 @@ taskboard.createTicket = function(data) {
 	});
 	return t;
 };
+
+function toTitleCase(str) {
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+}
 
 function maxZIdx() {
 	var max=0;
