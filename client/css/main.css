@@ -1,0 +1,47 @@
+#body {
+	background-color: white;
+}
+#taskBoard {
+	background-color: gray;
+}
+
+/* New Tickets */
+#newTicketPile {
+	padding: 10px;
+}
+.newTicket {
+	height: 100px;
+	width: 175px;
+	background-color: white;
+	border: 1px solid black;
+	text-align: center;
+}
+.newTicket2 {
+	height: 100px;
+	width: 175px;
+	background-color: white;
+	border: 1px solid black;
+	text-align: center;
+	-moz-border-radius: 1px; 
+	-webkit-border-radius: 1px;
+	-moz-box-shadow: 0 0 10px 2px #999999;
+	-webkit-box-shadow: 0 0 5px 2px #999999;
+}
+
+/* TaskBoard Board Bored */
+#tbTable {
+	width: 100%;
+	height: 100%;
+	border: 1px dotted blue;
+	border: collapse;
+}
+#tbTable tr th {
+	border: 1px dotted blue;
+	text-align: center;
+}
+#tbTable tr td {
+	border: 1px dotted black;
+	background-color: white;
+	text-align: center;
+	height: 95%;
+}

@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>TaskBoard</title>
+<link rel="stylesheet" href="./css/main.css" type="text/css">
+</head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
+<script src="http://jcann.com/js/jquery.tooltip-0.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="./taskboard.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	taskboard.init();
+});
+</script>
+<body id="body">
+	<div id="taskBoard">
+		<div id="Tickets"></div>
+		<div id="mainContainer">
+			<div id="newTicketPile">
+				<div class="newTicket">
+					Ticket# 1
+					Fun stuff
+				</div>
+			</div>
+			<table id="tbTable">
+				<tr>
+					<th>To Do</th>
+					<th>In Progess</th>
+					<th>Done</th>
+				</tr>
+				<tr>
+					<td id="toDo"></td>
+					<td id="inProgress"></td>
+					<td id="done"></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+
+</html>
